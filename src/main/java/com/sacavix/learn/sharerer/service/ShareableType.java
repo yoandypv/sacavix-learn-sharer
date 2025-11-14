@@ -5,9 +5,9 @@ import java.util.Map;
 
 public enum ShareableType {
 
-    CERTIFICATE("certificate"),
+    CERTIFICATE("quiz"),
     ACHIEVEMENT("achievement"),
-    CAREER_PATH("career-path"),
+    CAREER_PATH("career_path"),
     DEFAULT("default");
 
     String text;

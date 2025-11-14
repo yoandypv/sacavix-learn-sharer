@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public interface UserAchievementProjection {
      String getTitle();
-     String getDescription();
+     String getSocialDescription();
      String getIcon();
      LocalDateTime getEarnedAt();
 }

@@ -1,14 +1,40 @@
 package com.sacavix.learn.sharerer.service;
 
+import com.sacavix.learn.sharerer.persistence.UserAchievementProjection;
+import com.sacavix.learn.sharerer.persistence.UserAchievementRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class AchievementContent implements Shareable{
+public class AchievementContent implements Shareable {
+
+    private final UserAchievementRepository userAchievementRepository;
+
+    @Value("${cdn.url.static.achievement}")
+    private String staticUrl;
+
+    @Value("${cdn.url.static.default-image}")
+    private String staticUrlDefaultImage;
+
+    public AchievementContent(UserAchievementRepository userAchievementRepository) {
+        this.userAchievementRepository = userAchievementRepository;
+    }
 
     @Override
     public ShareContent getContent(String id) {
+        Optional<UserAchievementProjection> userAchievementProjection = this.userAchievementRepository
+                .getUserAchievementData(id);
 
-        return new ShareContent("Primer quiz", "He alcanzado mi primero logro y quiero compartirlo", "https://substackcdn.com/image/fetch/$s_!bOY3!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F90b287bc-2766-40a1-b6ea-d826c45b503b_973x667.png");
+        if (userAchievementProjection.isPresent()) {
+            UserAchievementProjection ua = userAchievementProjection.get();
+            return new ShareContent(ua.getTitle(), ua.getSocialDescription(), staticUrl);
+        }
+
+        return new ShareContent("He alcanzado un nuevo logro",
+                "He alcanzado un nuevo logro en SACAViX Learn y quiero compartirlo, únete y aprendamos programación juntos", staticUrlDefaultImage);
+
     }
 
     @Override

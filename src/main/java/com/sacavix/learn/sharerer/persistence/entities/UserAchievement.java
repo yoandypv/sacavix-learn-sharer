@@ -1,4 +1,4 @@
-package com.sacavix.learn.sharerer.persistence;
+package com.sacavix.learn.sharerer.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

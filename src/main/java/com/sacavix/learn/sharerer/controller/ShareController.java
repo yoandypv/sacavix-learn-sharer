@@ -42,7 +42,7 @@ public class ShareController {
         model.addAttribute("description", content.description());
         model.addAttribute("pageUrl", webUrl );
         model.addAttribute("imageUrl", content.imageUrl());
-        return "sharer";
+        return "share";
     }
 
 }

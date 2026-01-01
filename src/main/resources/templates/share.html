@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">SACAViX Learn</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" th:content="${pageUrl}" />
+    <meta property="og:title" th:content="${title}" />
+    <meta property="og:description" th:content="${description}" />
+    <meta property="og:image" th:content="${imageUrl}" />
+    <meta property="og:site_name" content="SACAViX Learn" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" th:content="${pageUrl}" />
+    <meta name="twitter:title" th:content="${title}" />
+    <meta name="twitter:description" th:content="${description}" />
+    <meta name="twitter:image" th:content="${imageUrl}" />
+
+    <script th:inline="javascript">
+        // Si quieres que el usuario no se quede en la página de "Loading",
+        // puedes redirigirlo a la plataforma real después de 2 segundos.
+        setTimeout(function() {
+            window.location.href = /*[[${pageUrl}]]*/ '#';
+        }, 2500);
+    </script>
+</head>
+<body>
+<div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
+    <h1>Cargando logro de SACAViX Learn...</h1>
+    <p>Si no eres redirigido, <a th:href="${pageUrl}">haz clic aquí</a>.</p>
+</div>
+</body>
+</html>

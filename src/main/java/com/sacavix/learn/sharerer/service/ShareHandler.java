@@ -27,7 +27,6 @@ public class ShareHandler implements InitializingBean {
     }
 
     public ShareContent getContent(String type, String id) {
-       log.info("Type is {}", ShareableType.fromText(type));
        ShareableType shareableType = Objects.nonNull(type) ? ShareableType.fromText(type): ShareableType.DEFAULT;
        return shareableMap.get(shareableType).getContent(id);
     }
